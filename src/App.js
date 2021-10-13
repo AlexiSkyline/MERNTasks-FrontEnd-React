@@ -1,8 +1,14 @@
 
-
+import { BrowserRouter, Switch, Route } from 'react-router-dom';
 function App() {
   return (
-    <h1>MERNTasks</h1>
+    <BrowserRouter>
+        <Switch>
+          <Route exact path="/" component={ Login } />
+          <Route exact path="/nueva-cuenta" component={ NuevaCuenta } />
+          <Route exact path="/proyectos" component={ Proyectos } />
+        </Switch>
+    </BrowserRouter>
   );
 }
 
