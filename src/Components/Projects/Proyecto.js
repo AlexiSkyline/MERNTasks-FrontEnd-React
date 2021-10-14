@@ -1,9 +1,14 @@
 import React from 'react'
 
-export const Proyecto = () => {
+export const Proyecto = ({ proyecto }) => {
     return (
-        <div>
-            
-        </div>
+        <li>
+            <button
+                type='button'
+                className='btn btn-blank'
+            >
+                { proyecto.nombre }
+            </button>
+        </li>
     )
 }
