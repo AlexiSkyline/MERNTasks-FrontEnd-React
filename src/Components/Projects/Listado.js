@@ -1,9 +1,9 @@
 import React from 'react'
 
-export const Listado = () => {
+export const ListadoProyectos = () => {
     return (
-        <div>
+        <ul className='listado-proyectos'>
             
-        </div>
+        </ul>
     )
 }
