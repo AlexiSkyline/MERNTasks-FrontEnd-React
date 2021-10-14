@@ -2,8 +2,13 @@ import React from 'react'
 
 export const Barra = () => {
     return (
-        <div>
+        <header className='app-header'>
+            <p className="nombre-usuario">Hola <span>Alexis López</span> </p>
             
-        </div>
+            <div className="nav-principal">
+                <a href="#!">Cerrar Sesión</a>
+            </div>
+            
+        </header>
     )
 }
