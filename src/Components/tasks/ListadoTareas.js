@@ -24,10 +24,10 @@ export const ListadoTareas = () => {
                     )))
                 }
             </ul>
-            
+
             <button
                 type='button'
-                className='btn btn-eliminar'
+                className='btn btn-primario'
             >
                 Eliminar Proyecto &times;
             </button>
