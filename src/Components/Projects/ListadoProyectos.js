@@ -1,17 +1,25 @@
-import React from 'react'
+import React, { useContext, useEffect } from 'react';
+import { ProyectoContext } from '../../Context/Projects/proyectoContext';
+
 import { Proyecto } from './Proyecto';
 
 export const ListadoProyectos = () => {
 
-    const proyectos = [
-        { nombre: 'Tienda Online con Laraven' },
-        { nombre: 'Clon de Instagram con Rect' },
-        { nombre: 'Clon de whatsapp con React-Native' },
-    ];
+    // * Extraer peoyectos de state inicial
+    const proyectosContext = useContext( ProyectoContext );
+    const { proyectos, obtenerProyectos } = proyectosContext;
+    
+    useEffect(() => {
+        obtenerProyectos();
+    }, []);
+
+    if( proyectos.length === 0 ) return null;
+
     return (
         <ul className='listado-proyectos'>
             { proyectos.map( proyecto => (
-                <Proyecto 
+                <Proyecto
+                    key={ proyecto.id } 
                     proyecto={ proyecto }
                 />
             )) }
