@@ -1,6 +1,14 @@
-import React from 'react'
+import React, { useContext } from 'react';
+import { ProyectoContext } from '../../Context/Projects/proyectoContext';
 
 export const FormTarea = () => {
+
+    // * Extrae proyectos esta activo
+    const proyectosContext = useContext( ProyectoContext );
+    const { proyecto } = proyectosContext;
+
+    if( !proyecto ) return null;
+
     return (
         <div className='formulario'>
             <form>
@@ -23,4 +31,4 @@ export const FormTarea = () => {
             </form>
         </div>
     )
-}
+};

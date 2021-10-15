@@ -1,8 +1,16 @@
-import React from 'react'
+import React, { useContext } from 'react'
+import { ProyectoContext } from '../../Context/Projects/proyectoContext';
 import { Tarea } from './Tarea';
 
 export const ListadoTareas = () => {
 
+    // * Estrae proyectos de state inicial
+    const proyectosContext = useContext( ProyectoContext );
+    const { proyecto } = proyectosContext;
+
+    if( !proyecto ) return <h2>Selecciona un Proyecto</h2>;
+
+    const [ proyectoActual ] = proyecto;
     const tareasProyectos = [
         { nombre: 'Elegir Plataforma', estado: true },
         { nombre: 'Elegir Colores', estado: false },
@@ -12,7 +20,7 @@ export const ListadoTareas = () => {
 
     return (
         <>
-            <h2>Proyecto: Clon de Instagram con Rect</h2>
+            <h2>Proyecto: { proyectoActual.nombre } </h2>
 
             <ul className="listado-tareas">
                 { tareasProyectos.length === 0 
