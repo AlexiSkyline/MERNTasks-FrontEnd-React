@@ -6,7 +6,7 @@ export const ListadoTareas = () => {
 
     // * Estrae proyectos de state inicial
     const proyectosContext = useContext( ProyectoContext );
-    const { proyecto } = proyectosContext;
+    const { proyecto, eliminarProyecto } = proyectosContext;
 
     if( !proyecto ) return <h2>Selecciona un Proyecto</h2>;
 
@@ -36,6 +36,7 @@ export const ListadoTareas = () => {
             <button
                 type='button'
                 className='btn btn-primario'
+                onClick={ () => eliminarProyecto( proyectoActual.id ) }
             >
                 Eliminar Proyecto &times;
             </button>

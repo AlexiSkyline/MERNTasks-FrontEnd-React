@@ -2,7 +2,8 @@ import { FORMULARIO_PROYECTO,
          OBTENER_PROYECTOS, 
          AGREGAR_PROYECTO,
          VALIDAR_FORMULARIO,
-         PROYECTO_ACTUAL } from '../Types';
+         PROYECTO_ACTUAL,
+         ELIMINAR_PROYECTO } from '../Types';
 
 export const proyectoReducer = ( state, action ) => {
     
@@ -30,9 +31,15 @@ export const proyectoReducer = ( state, action ) => {
                 errorFormulario: true
             }
         case PROYECTO_ACTUAL:
-            return{
+            return {
                 ...state,
                 proyecto: state.proyectos.filter( proyecto => proyecto.id === action.payload )
+            }
+        case ELIMINAR_PROYECTO:
+            return {
+                ...state,
+                proyectos: state.proyectos.filter( proyecto => proyecto.id !== action.payload ),
+                proyecto: null // * Para dejar de mostar apartado de informacion del proyecto
             }
         default:
             return state;
