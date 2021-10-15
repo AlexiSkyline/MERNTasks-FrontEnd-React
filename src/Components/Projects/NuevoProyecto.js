@@ -5,7 +5,7 @@ export const NuevoProyecto = () => {
 
     // TODO: Obtener el state del formulario
     const proyectosContext = useContext( ProyectoContext );
-    const { formulario, mostrarFormulario } = proyectosContext;
+    const { formulario, mostrarFormulario, agregarProyecto } = proyectosContext;
 
     // * State para Proyecto
     const [ proyecto, setProyecto ] = useState({
@@ -27,10 +27,17 @@ export const NuevoProyecto = () => {
         e.preventDefault();
         
         // Validar el proyecto
+        if( nombre === '' ) {
+            return;
+        }
 
         // agregar el state
+        agregarProyecto( proyecto );
 
         // Reiniciar el form
+        setProyecto({
+            nombre: ''
+        })
     }
 
     return (
@@ -55,7 +62,7 @@ export const NuevoProyecto = () => {
                                 placeholder='Nombre Proyecto'
                                 name='nombre'
                                 value={ nombre }
-                                onClick={ handleOnChange }
+                                onChange={ handleOnChange }
                             />
 
                             <input 

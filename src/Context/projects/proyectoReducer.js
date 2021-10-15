@@ -1,4 +1,4 @@
-import { FORMULARIO_PROYECTO, OBTENER_PROYECTOS } from '../Types';
+import { FORMULARIO_PROYECTO, OBTENER_PROYECTOS, AGREGAR_PROYECTO } from '../Types';
 
 export const proyectoReducer = ( state, action ) => {
     
@@ -12,6 +12,12 @@ export const proyectoReducer = ( state, action ) => {
             return {
                 ...state,
                 proyectos: action.payload
+            }
+        case AGREGAR_PROYECTO:
+            return {
+                ...state,
+                proyectos: [ ...state.proyectos, action.payload ],
+                formulario: false
             }
         default:
             return state;
