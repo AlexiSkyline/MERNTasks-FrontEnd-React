@@ -1,6 +1,6 @@
 import React, { useReducer } from 'react'
 
-import { FORMULARIO_PROYECTO, OBTENER_PROYECTOS } from '../Types';
+import { FORMULARIO_PROYECTO, OBTENER_PROYECTOS, AGREGAR_PROYECTO } from '../Types';
 import { ProyectoContext } from './proyectoContext';
 import { proyectoReducer } from './proyectoReducer';
 
