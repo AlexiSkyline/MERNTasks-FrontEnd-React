@@ -1,5 +1,8 @@
-import React, { useContext, useReducer } from 'react'
-import { TAREAS_PROYECTO } from '../Types';
+import React, { useReducer } from 'react'
+import { 
+        TAREAS_PROYECTO,
+        AGREGAR_TAREA,
+        VALIDAR_TAREA } from '../Types';
 import { TareaContext } from './tareaContext';
 import { TareaReducer } from './tareaReducer';
 
@@ -20,7 +23,8 @@ export const TareaState = ( props ) => {
             { nombre: 'Elegir Plataforma de pago', estado: false, proyectoId: 1 },
             { nombre: 'Elegir Hosting', estado: true, proyectoId: 5 },
         ],
-        tareasProyecto: null
+        tareasProyecto: null,
+        errorTarea: false
     };
 
     // * Crear dispatch y state
@@ -35,16 +39,34 @@ export const TareaState = ( props ) => {
         });
     };
 
+    // TODO: Agregar tarea al proyecto Seleccionado
+    const agregarTarea = tarea => {
+        dispatch({
+            type: AGREGAR_TAREA,
+            payload: tarea
+        });
+    };
+
+    // TODO: valida el formulario de la nueva Tarea
+    const validarTarea = () => {
+        dispatch({
+            type: VALIDAR_TAREA,
+        });
+    }
+
     return (
         <TareaContext.Provider
             value={{
                 tareas: state.tareas,
                 tareasProyecto: state.tareasProyecto,
-                obtenerTarea
+                errorTarea: state.errorTarea,
+                obtenerTarea,
+                agregarTarea,
+                validarTarea
             }}
         >
             { props.children }
         </TareaContext.Provider>
-    )
+    );
 }
 
