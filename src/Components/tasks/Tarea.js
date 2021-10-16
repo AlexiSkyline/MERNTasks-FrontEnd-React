@@ -1,6 +1,25 @@
-import React from 'react'
+import { useContext } from 'react';
+import { ProyectoContext } from '../../Context/Projects/proyectoContext';
+import { TareaContext } from '../../Context/tasks/tareaContext';
 
 export const Tarea = ({ tarea }) => {
+
+    // * Extraer peoyectos de state inicial
+    const proyectosContext = useContext( ProyectoContext );
+    const { proyecto } = proyectosContext; 
+
+    const [ proyectoActual ] = proyecto;
+
+    // * Obtener la función del context de tarea
+    const tareasContext = useContext( TareaContext );
+    const { eliminarTarea, obtenerTarea } = tareasContext;
+
+    // Función para eliminar tarea
+    const handleEliminar = ( id ) => {
+        eliminarTarea( id );
+        obtenerTarea( proyectoActual.id );
+    }
+
     return (
         <li className="tarea sombra">
             <p>{ tarea.nombre }</p>
@@ -39,6 +58,7 @@ export const Tarea = ({ tarea }) => {
                 <button 
                     type='button'
                     className="btn btn-secundario"
+                    onClick={ () => handleEliminar( tarea.id ) }
                 >
                     Eliminar
                 </button>
