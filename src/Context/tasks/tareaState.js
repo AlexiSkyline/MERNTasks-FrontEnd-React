@@ -3,7 +3,8 @@ import {
         TAREAS_PROYECTO,
         AGREGAR_TAREA,
         VALIDAR_TAREA,
-        ELIMINAR_TAREA } from '../Types';
+        ELIMINAR_TAREA,
+        ESTADO_TAREA } from '../Types';
 import { TareaContext } from './tareaContext';
 import { TareaReducer } from './tareaReducer';
 
@@ -62,6 +63,15 @@ export const TareaState = ( props ) => {
             payload: id
         });
     }
+
+    // TODO: Cambia el estado de casa tarea
+    const cambiarEstadoTarea  = tarea => {
+        dispatch({
+            type: ESTADO_TAREA,
+            payload: tarea
+        });
+    }
+    
     return (
         <TareaContext.Provider
             value={{
@@ -71,7 +81,8 @@ export const TareaState = ( props ) => {
                 obtenerTarea,
                 agregarTarea,
                 validarTarea,
-                eliminarTarea
+                eliminarTarea,
+                cambiarEstadoTarea
             }}
         >
             { props.children }
