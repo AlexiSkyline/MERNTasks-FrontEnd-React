@@ -1,4 +1,4 @@
-import React, { useContext, useState } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import { ProyectoContext } from '../../Context/Projects/proyectoContext';
 import { TareaContext } from '../../Context/tasks/tareaContext';
 
@@ -9,7 +9,18 @@ export const FormTarea = () => {
     const { proyecto } = proyectosContext;
     
     const tareasContext = useContext( TareaContext );
-    const { errorTarea, agregarTarea, validarTarea, obtenerTarea } = tareasContext;
+    const { tareaSeleccionada, errorTarea, agregarTarea, validarTarea, obtenerTarea, actualizarTarea, limpiarTarea } = tareasContext;
+
+    // * Effect que detecta si hay una tarea seleccionada
+    useEffect( () => {
+        if( tareaSeleccionada !== null ) {
+            setTarea( tareaSeleccionada );
+        } else {
+            setTarea({
+                nombre: ''
+            });
+        }
+    }, [tareaSeleccionada])
 
     // * State del formulario
     const [ tarea, setTarea ] = useState({
@@ -40,11 +51,19 @@ export const FormTarea = () => {
             return;
         }
 
-        // * Agregar la nueva tarea al state de tareas
-        tarea.proyectoId = proyectoActual.id;
-        tarea.estado = false;
-        agregarTarea( tarea );
-        
+        // * Si es edición o si es nueva tarea
+        if( tareaSeleccionada === null ) {
+            // * Agregar la nueva tarea al state de tareas
+            tarea.proyectoId = proyectoActual.id;
+            tarea.estado = false;
+            agregarTarea( tarea );
+        } else {
+            // * Actializa la tarea exitente
+            actualizarTarea( tarea );
+
+            // * Elimina la tarea seleccionada del state
+            limpiarTarea();
+        }
         // * Obtenemos y filtramos las tareas del proyecto actual
         obtenerTarea( proyectoActual.id );
 
@@ -74,7 +93,7 @@ export const FormTarea = () => {
                     <input 
                         type="submit" 
                         className='btn btn-primario btn-primario btn-block'
-                        value='Agregar Tarea'
+                        value={ tareaSeleccionada ? 'Editar Tarea' : 'Agregar Tare'}
                     />
                 </div>
             </form>
