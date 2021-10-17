@@ -19,7 +19,7 @@ export const NuevoProyecto = () => {
         setProyecto({
             ...proyecto,
             [e.target.name]: e.target.value
-        })
+        });
     } 
 
     // TODO: Cuando el usuario envia un proyecto
@@ -38,7 +38,7 @@ export const NuevoProyecto = () => {
         // Reiniciar el form
         setProyecto({
             nombre: ''
-        })
+        });
     }
 
     return (

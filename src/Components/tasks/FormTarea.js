@@ -38,7 +38,7 @@ export const FormTarea = () => {
         setTarea({
             ...tarea,
             [e.target.name]: e.target.value
-        })
+        });
     }
 
     const handleOnSubmit = (e) => {

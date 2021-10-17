@@ -30,7 +30,7 @@ export const ProyectoState = ( props ) => {
     const mostrarFormulario = () => {
         dispatch({
             type: FORMULARIO_PROYECTO
-        })
+        });
     }
 
     // * obtener los proyectos
@@ -38,7 +38,7 @@ export const ProyectoState = ( props ) => {
         dispatch({
             type: OBTENER_PROYECTOS,
             payload: proyectos
-        })
+        });
     }
 
     // TODO: Agreagar nuevo Proyecto
@@ -55,7 +55,7 @@ export const ProyectoState = ( props ) => {
     const mostrarError = () => {
         dispatch({
             type: VALIDAR_FORMULARIO
-        })
+        });
     }
 
     // * Selecciona el proyecto que el usuario dio click
@@ -71,8 +71,9 @@ export const ProyectoState = ( props ) => {
         dispatch({
             type: ELIMINAR_PROYECTO,
             payload: proyectoId
-        })
+        });
     }
+    
     return (
         <ProyectoContext.Provider
                 value={{

@@ -1,4 +1,4 @@
-import React, { useReducer } from 'react'
+import React, { useReducer } from 'react';
 import { 
         TAREAS_PROYECTO,
         AGREGAR_TAREA,
@@ -97,8 +97,9 @@ export const TareaState = ( props ) => {
     const limpiarTarea = () => {
         dispatch({
             type: LIMPIAR_TAREA
-        })
+        });
     }
+    
     return (
         <TareaContext.Provider
             value={{

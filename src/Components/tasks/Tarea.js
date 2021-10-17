@@ -35,6 +35,7 @@ export const Tarea = ({ tarea }) => {
     const seleccionarTarea = ( tarea ) => {
         guardarTareaActual( tarea ); 
     }
+    
     return (
         <li className="tarea sombra">
             <p>{ tarea.nombre }</p>
