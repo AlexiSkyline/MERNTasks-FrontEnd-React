@@ -1,3 +1,5 @@
 react router: npm i react-router-dom
 
 uuid: npm i -D uuid
+
+react transition group: npm i react-transition-group
