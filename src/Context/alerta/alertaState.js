@@ -7,11 +7,11 @@ import { alertaReducer } from './alertaReducer';
 
 export const AlertaState = ( props ) => {
 
-    const inicialState = {
+    const initialState = {
         alerta: null,
     };
 
-    const [ state, dispatch ] = useReducer( alertaReducer, inicialState );
+    const [ state, dispatch ] = useReducer( alertaReducer, initialState );
 
     // * Funciones
     const mostrarAlerta = ( msg, categoria ) => {
