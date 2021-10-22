@@ -32,10 +32,19 @@ export const NuevaCuenta = () => {
         // Todo: Validar que no haya campos
         if( nombre.trim() === '' || email.trim() === '' || password.trim() === '' || confirmar.trim() === '' ) {
             mostrarAlerta( 'Todos los campos son obligatorios', 'alerta-error' );
+            return;
         }
-        // Todo: Password minimo sea de 6 Caracteres
 
+        // Todo: Password minimo sea de 6 Caracteres
+        if( password.length < 6 ) {
+            mostrarAlerta( 'El password debe de tener al menos 6 caracteries', 'error' );
+            return;
+        }
         // Todo: Los 2 passwords sean iguales 
+        if( password !== confirmar ) {
+            mostrarAlerta( 'Los password no son iguales', 'error' );
+            return;
+        }
 
         // Todo: Pasarlo al action
     }
