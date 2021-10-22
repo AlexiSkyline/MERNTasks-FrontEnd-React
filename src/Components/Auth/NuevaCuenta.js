@@ -1,12 +1,16 @@
 import React, { useContext, useState } from 'react'
 import { Link } from 'react-router-dom';
 import { AlertaContext } from '../../Context/alerta/alertaContext';
+import { AuthContext } from '../../Context/authentication/authContext';
 
 export const NuevaCuenta = () => {
 
     // * Extrae los valores del Context
     const alertasContext = useContext( AlertaContext );
     const { alerta, mostrarAlerta } = alertasContext;
+
+    const authContext = useContext( AuthContext );
+    const { registrarUsario } = authContext;
 
     // * State para registrarse
     const [ usuario, setUsuario ] = useState({
@@ -42,11 +46,12 @@ export const NuevaCuenta = () => {
         }
         // Todo: Los 2 passwords sean iguales 
         if( password !== confirmar ) {
-            mostrarAlerta( 'Los password no son iguales', 'error' );
+            mostrarAlerta( 'las passwords no coinciden', 'error' );
             return;
         }
 
         // Todo: Pasarlo al action
+        registrarUsario({ nombre, email, password });
     }
 
     return (
