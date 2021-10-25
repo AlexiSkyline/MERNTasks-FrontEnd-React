@@ -12,7 +12,8 @@ export const AuthState = ( props ) => {
         token: localStorage.getItem( 'token' ),
         autenticado: null,
         usuario: null,
-        mensaje: null
+        mensaje: null,
+        cargando: true
     };
 
     const [ state, dispatch ] = useReducer( authReducer, initialState );
@@ -103,10 +104,11 @@ export const AuthState = ( props ) => {
                 autenticado: state.autenticado,
                 usuario: state.usuario,
                 mensaje: state.mensaje,
+                cargando: state.cargando,
                 registrarUsario,
                 iniciarSesion,
                 usuarioAutenticado,
-                cerrarSesion
+                cerrarSesion,
             }}
         >
             { props.children }

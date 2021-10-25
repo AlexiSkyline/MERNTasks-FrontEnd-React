@@ -3,7 +3,7 @@ import { LOGIN_ERROR,
          REGISTRO_EXITOSO,
          OBTENER_USUARIO, 
          LOGIN_EXITOSO,
-         CERRAR_SESION} from "../Types";
+         CERRAR_SESION } from "../Types";
 
 export const authReducer = ( state, action ) => {
     switch ( action.type ) {
@@ -13,13 +13,15 @@ export const authReducer = ( state, action ) => {
             return {
                 ...state,
                 autenticado: true,
-                mensaje: null
+                mensaje: null,
+                cargando: false
             }
         case OBTENER_USUARIO: 
             return {
                 ...state,
                 autenticado: true,
-                usuario: action.payload
+                usuario: action.payload,
+                cargando: false
             }
         case CERRAR_SESION:
         case LOGIN_ERROR:
@@ -30,7 +32,8 @@ export const authReducer = ( state, action ) => {
                 token: null,
                 usuario: null,
                 autenticado: null,
-                mensaje: action.payload
+                mensaje: action.payload,
+                cargando: false
             }
         default:
             return state;
