@@ -1,7 +1,7 @@
 import React, { useReducer } from 'react';
 import { clienteAxios } from "../../Components/config/axios";
 import { tokenAuth } from '../../Components/config/tokenAuth';
-import { LOGIN_ERROR, LOGIN_EXITOSO, OBTENER_USUARIO, REGISTRO_ERROR, REGISTRO_EXITOSO } from "../Types";
+import { CERRAR_SESION, LOGIN_ERROR, LOGIN_EXITOSO, OBTENER_USUARIO, REGISTRO_ERROR, REGISTRO_EXITOSO } from "../Types";
 import { AuthContext } from "./authContext";
 import { authReducer } from "./authReducer";
 
@@ -89,6 +89,13 @@ export const AuthState = ( props ) => {
         }
     }
 
+    // * Cierra la sesión del usuario
+    const cerrarSesion = () => {
+        dispatch({
+            type: CERRAR_SESION
+        });
+    }
+
     return(
         <AuthContext.Provider
             value={{
@@ -97,7 +104,9 @@ export const AuthState = ( props ) => {
                 usuario: state.usuario,
                 mensaje: state.mensaje,
                 registrarUsario,
-                iniciarSesion
+                iniciarSesion,
+                usuarioAutenticado,
+                cerrarSesion
             }}
         >
             { props.children }
