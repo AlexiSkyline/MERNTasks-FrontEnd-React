@@ -1,4 +1,5 @@
 import React, { useReducer } from 'react'
+import { clienteAxios } from '../../Components/config/axios';
 
 import { FORMULARIO_PROYECTO, 
          OBTENER_PROYECTOS, 
@@ -42,13 +43,17 @@ export const ProyectoState = ( props ) => {
     }
 
     // TODO: Agreagar nuevo Proyecto
-    const agregarProyecto = proyecto => {
-        proyecto.id = Date.now();
-
-        dispatch({
-            type: AGREGAR_PROYECTO,
-            payload: proyecto
-        });
+    const agregarProyecto = async ( proyecto ) => {
+        try {
+            const resultado = await clienteAxios.post( '/api/proyectos', proyecto );
+            console.log( resultado );
+            dispatch({
+                type: AGREGAR_PROYECTO,
+                payload: resultado.data
+            });
+        } catch( error ) {
+            console.log( error );
+        }
     };
 
     // TODO: Validamos el error 
