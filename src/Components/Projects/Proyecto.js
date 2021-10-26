@@ -21,7 +21,7 @@ export const Proyecto = ({ proyecto }) => {
             <button
                 type='button'
                 className='btn btn-blank'
-                onClick={ () => handleOnClick( proyecto.id )}
+                onClick={ () => handleOnClick( proyecto._id )}
             >
                 { proyecto.nombre }
             </button>
