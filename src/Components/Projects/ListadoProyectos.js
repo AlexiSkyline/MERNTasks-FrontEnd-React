@@ -22,7 +22,7 @@ export const ListadoProyectos = () => {
             <TransitionGroup>
                 { proyectos.map( proyecto => (
                     <CSSTransition
-                        key={ proyecto.id }
+                        key={ proyecto._id }
                         timeout={ 200 }
                         classNames='proyecto'
                     >

@@ -12,12 +12,6 @@ import { proyectoReducer } from './proyectoReducer';
 
 export const ProyectoState = ( props ) => {
     
-    const proyectos = [
-        { id: 1, nombre: 'Tienda Online con Laraven' },
-        { id: 2, nombre: 'Clon de Instagram con Rect' },
-        { id: 3, nombre: 'Clon de whatsapp con React-Native' },
-    ];
-
     const initialState = {
         proyectos : [],
         formulario : false,
@@ -35,18 +29,22 @@ export const ProyectoState = ( props ) => {
     }
 
     // * obtener los proyectos
-    const obtenerProyectos = () => {
-        dispatch({
-            type: OBTENER_PROYECTOS,
-            payload: proyectos
-        });
+    const obtenerProyectos = async () => {
+        try {
+            const resultado = await clienteAxios.get( '/api/proyectos' );
+            dispatch({
+                type: OBTENER_PROYECTOS,
+                payload: resultado.data.proyectos
+            });
+        } catch (error) {
+            console.log( error );
+        }
     }
 
     // TODO: Agreagar nuevo Proyecto
     const agregarProyecto = async ( proyecto ) => {
         try {
             const resultado = await clienteAxios.post( '/api/proyectos', proyecto );
-            console.log( resultado );
             dispatch({
                 type: AGREGAR_PROYECTO,
                 payload: resultado.data
