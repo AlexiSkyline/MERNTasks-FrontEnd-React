@@ -3,7 +3,8 @@ import { FORMULARIO_PROYECTO,
          AGREGAR_PROYECTO,
          VALIDAR_FORMULARIO,
          PROYECTO_ACTUAL,
-         ELIMINAR_PROYECTO } from '../Types';
+         ELIMINAR_PROYECTO, 
+         PROYECTO_ERROR} from '../Types';
 
 export const proyectoReducer = ( state, action ) => {
     
@@ -40,6 +41,11 @@ export const proyectoReducer = ( state, action ) => {
                 ...state,
                 proyectos: state.proyectos.filter( proyecto => proyecto._id !== action.payload ),
                 proyecto: null // * Para dejar de mostar apartado de informacion del proyecto
+            }
+        case PROYECTO_ERROR: 
+            return {
+                ...state,
+                mensaje: action.payload
             }
         default:
             return state;

@@ -6,7 +6,8 @@ import { FORMULARIO_PROYECTO,
          AGREGAR_PROYECTO,
          VALIDAR_FORMULARIO,
          PROYECTO_ACTUAL,
-         ELIMINAR_PROYECTO } from '../Types';
+         ELIMINAR_PROYECTO, 
+         PROYECTO_ERROR } from '../Types';
 import { ProyectoContext } from './proyectoContext';
 import { proyectoReducer } from './proyectoReducer';
 
@@ -16,7 +17,8 @@ export const ProyectoState = ( props ) => {
         proyectos : [],
         formulario : false,
         errorFormulario: false,
-        proyecto: null
+        proyecto: null,
+        mensaje: null
     }
 
     // * Dispatch para ejecutar las acciones
@@ -37,7 +39,15 @@ export const ProyectoState = ( props ) => {
                 payload: resultado.data.proyectos
             });
         } catch (error) {
-            console.log( error );
+            const alerta = {
+                msg: 'Hubo un error',
+                categoria: 'alerta-error'
+            }
+            
+            dispatch({
+                type: PROYECTO_ERROR,
+                payload: alerta
+            });
         }
     }
 
@@ -49,8 +59,16 @@ export const ProyectoState = ( props ) => {
                 type: AGREGAR_PROYECTO,
                 payload: resultado.data
             });
-        } catch( error ) {
-            console.log( error );
+        } catch (error) {
+            const alerta = {
+                msg: 'Hubo un error',
+                categoria: 'alerta-error'
+            }
+            
+            dispatch({
+                type: PROYECTO_ERROR,
+                payload: alerta
+            });
         }
     };
 
@@ -78,7 +96,15 @@ export const ProyectoState = ( props ) => {
                 payload: proyectoId
             });
         } catch (error) {
-            console.log( error );
+            const alerta = {
+                msg: 'Hubo un error',
+                categoria: 'alerta-error'
+            }
+
+            dispatch({
+                type: PROYECTO_ERROR,
+                payload: alerta
+            });
         }
     }
     
@@ -89,6 +115,7 @@ export const ProyectoState = ( props ) => {
                     formulario: state.formulario,
                     errorFormulario: state.errorFormulario,
                     proyecto: state.proyecto,
+                    mensaje: state.mensaje,
                     mostrarFormulario,
                     obtenerProyectos,
                     agregarProyecto,
