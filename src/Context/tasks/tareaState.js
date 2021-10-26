@@ -1,12 +1,11 @@
 import React, { useReducer } from 'react';
-import { sync } from 'rimraf';
 import { clienteAxios } from '../../Components/config/axios';
 import { 
         TAREAS_PROYECTO,
         AGREGAR_TAREA,
         VALIDAR_TAREA,
         ELIMINAR_TAREA,
-        ESTADO_TAREA,
+        // ESTADO_TAREA,
         TAREA_ACTUAL,
         ACTUALIZAR_TAREA,
         LIMPIAR_TAREA } from '../Types';
@@ -41,7 +40,7 @@ export const TareaState = ( props ) => {
     // TODO: Agregar tarea al proyecto Seleccionado
     const agregarTarea = async ( tarea ) => {
         try {
-            const resultado = await clienteAxios.post( '/api/tareas', tarea );
+            await clienteAxios.post( '/api/tareas', tarea );
             dispatch({
                 type: AGREGAR_TAREA,
                 payload: tarea
