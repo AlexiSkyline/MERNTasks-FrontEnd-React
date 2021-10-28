@@ -4,6 +4,7 @@ import { AGREGAR_TAREA,
          ELIMINAR_TAREA,
         //  ESTADO_TAREA,
          TAREA_ACTUAL,
+         TAREAS_ERROR,
          ACTUALIZAR_TAREA,
          LIMPIAR_TAREA } from "../Types";
 
@@ -45,6 +46,11 @@ export const TareaReducer = ( state, action ) => {
             return {
                 ...state,
                 tareaSeleccionada: null
+            }
+        case TAREAS_ERROR: 
+            return {
+                ...state,
+                mensaje: action.payload
             }
         default:
             return state;

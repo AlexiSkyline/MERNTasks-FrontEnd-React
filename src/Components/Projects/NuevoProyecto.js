@@ -1,4 +1,4 @@
-import React, { useContext, useState } from 'react'
+import React, { Fragment, useContext, useState } from 'react'
 import { ProyectoContext } from '../../Context/Projects/proyectoContext';
 
 export const NuevoProyecto = () => {
@@ -42,7 +42,7 @@ export const NuevoProyecto = () => {
     }
 
     return (
-        <>
+        <Fragment>
             <button 
                 type='button'
                 className='btn btn-block btn-primario'
@@ -78,6 +78,6 @@ export const NuevoProyecto = () => {
             {
                 errorFormulario ? <p className='mensaje error'>El nombre del Proyecto es obligatorio</p>: null
             }
-        </>
+        </Fragment>
     )
 }

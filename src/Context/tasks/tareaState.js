@@ -7,6 +7,7 @@ import {
         ELIMINAR_TAREA,
         // ESTADO_TAREA,
         TAREA_ACTUAL,
+        TAREAS_ERROR,
         ACTUALIZAR_TAREA,
         LIMPIAR_TAREA } from '../Types';
 import { TareaContext } from './tareaContext';
@@ -17,7 +18,8 @@ export const TareaState = ( props ) => {
     const initialState = {
         tareasProyecto: [],
         errorTarea: false,
-        tareaSeleccionada: null
+        tareaSeleccionada: null,
+        mensaje: null
     };
 
     // * Crear dispatch y state
@@ -33,7 +35,14 @@ export const TareaState = ( props ) => {
                 payload: resultado.data.tareas
             });
         } catch (error) {
-            console.log( error );
+            const alerta = {
+                msg: error.response.data.msg,
+                categoria: 'alerta-error'
+            }
+            dispatch({
+                type: TAREAS_ERROR,
+                payload: alerta
+            });
         }
     };
 
@@ -46,7 +55,14 @@ export const TareaState = ( props ) => {
                 payload: tarea
             });
         } catch (error) {
-            console.log( error );
+            const alerta = {
+                msg: error.response.data.msg,
+                categoria: 'alerta-error'
+            }
+            dispatch({
+                type: TAREAS_ERROR,
+                payload: alerta
+            });
         }
     };
 
@@ -66,7 +82,14 @@ export const TareaState = ( props ) => {
                 payload: id
             });
         } catch (error) {
-            console.log( error );
+            const alerta = {
+                msg: error.response.data.msg,
+                categoria: 'alerta-error'
+            }
+            dispatch({
+                type: TAREAS_ERROR,
+                payload: alerta
+            });
         }
     }
 
@@ -87,7 +110,14 @@ export const TareaState = ( props ) => {
                 payload: resultado.data.tarea
             });
         } catch (error) {
-            console.log( error );
+            const alerta = {
+                msg: error.response.data.msg,
+                categoria: 'alerta-error'
+            }
+            dispatch({
+                type: TAREAS_ERROR,
+                payload: alerta
+            });
         }
     }
     
